@@ -99,6 +99,8 @@ if (navigator.geolocation)
             console.log(selectedLibData);
 
             sidebar.classList.add('display');
+            sidebar.classList.add('slideIn');
+            setTimeout(() => sidebar.classList.remove('slideIn'), 1000);
             sidebar.classList.remove('hidden');
             sidebar.classList.remove('disabled');
 

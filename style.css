@@ -56,13 +56,27 @@ header {
 
 .hidden {
   opacity: 0;
-  transform: translateX(100%);
+  /* animation: slideOut 3s forwards; */
+  transition: transform 2s, opacity 2s;
   /* display: none; */
 }
 
 .display {
   opacity: 1;
-  transform: translateX(0%);
+  transition: transform 1s, opacity 1s;
+}
+
+.slideIn {
+  animation: slideIn 0.7s forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }
 
 .disabled {
