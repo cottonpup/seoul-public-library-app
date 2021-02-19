@@ -28,11 +28,20 @@
   </head>
   <body>
     <header class="header">
-      <a href="" class="btn title--big">Public Libraries<br />in Seoul</a>
+      <a href="" class="btn logo__title closer"
+        >Public Libraries<br />
+        in Seoul <i class="fas fa-book-reader"></i
+      ></a>
       <div class="input text-small">
-        <input class="input__text" type="text" placeholder="e.g. 서울 도서관" />
+        <input
+          class="input__text"
+          type="text"
+          placeholder="도서관명으로 검색하기: 예) 가온도서관"
+        />
       </div>
-      <button class="btn btn__search text--big">주변 도서관 찾기</button>
+      <button class="btn btn__search btn-grad">
+        <i class="far fa-compass"></i>주변 도서관 찾기
+      </button>
     </header>
     <div class="map-box">
       <aside class="sidebar hidden disabled">
@@ -41,4 +50,8 @@
       <div id="map"></div>
     </div>
   </body>
+  <script
+    src="https://kit.fontawesome.com/4320904247.js"
+    crossorigin="anonymous"
+  ></script>
 </html>

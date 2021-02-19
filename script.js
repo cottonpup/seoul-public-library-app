@@ -3,10 +3,6 @@
 const sidebar = document.querySelector('.sidebar');
 const header = document.querySelector('.header');
 const mapDiv = document.querySelector('#map');
-let libRow;
-
-// 클릭하면 헤더에 border-radius 추가
-// border-radius: 0px 0px 0px 50px;
 
 sidebar.addEventListener('click', function (e) {
   if (e.target.classList.contains('close')) {
@@ -62,10 +58,9 @@ if (navigator.geolocation)
         })
         .then((data) => {
           const { row } = data.SeoulPublicLibraryInfo;
-          libRow = row;
 
           // 마크 랜더링 함수 호출
-          libRow.map((lib) => renderMark(lib));
+          row.map((lib) => renderMark(lib));
 
           // 호출..
           mapDiv.addEventListener('click', function (e) {
@@ -83,15 +78,31 @@ if (navigator.geolocation)
             <div class="close">&#10005;</div>
             <h1 class="sidebar__title text--big">도서관 정보</h1>
             <ul class="lib-list">
-            <li class="lib-list--col">${selectedLibData.LBRRY_NAME}</li>
-            <li class="lib-list--col">${selectedLibData.ADRES}</li>
-            <li class="lib-list--col">${selectedLibData.OP_TIME}</li>
-            <li class="lib-list--col">${selectedLibData.FDRM_CLOSE_DATE}</li>
-            <li class="lib-list--col">${selectedLibData.HMPG_URL}</li>
-            <li class="lib-list--col">${selectedLibData.OP_TIME}</li>
-            <li class="lib-list--col">${selectedLibData.FXNUM}</li>
-            <li class="lib-list--col">${selectedLibData.MBER_SBSCRB_RQISIT}</li>
+            <li class="lib-list__col lib__name--big"><i class="fas fa-location-arrow"></i>${
+              selectedLibData.LBRRY_NAME || '도서관 정보 오류'
+            }</li>
+            <li class="lib-list__col text--gray"><label>주소: </label>${
+              selectedLibData.ADRES || '주소 정보 없음'
+            }</li>
+            <li class="lib-list__col text--gray"><label>운영시간: </label>${
+              selectedLibData.OP_TIME || '운영시간 정보 없음'
+            }</li>
+            <li class="lib-list__col text--gray"><label>휴관일: </label>${
+              selectedLibData.FDRM_CLOSE_DATE || '휴관일 정보 없음'
+            }</li>
+            <li class="lib-list__col text--gray><label>문의처: </label>${
+              selectedLibData.FXNUM || '문의처 정보 없음'
+            }</li>
+            <li class="lib-list__col text--gray"><label>이용자격: </label>${
+              selectedLibData.MBER_SBSCRB_RQISIT || '이용제한 정보 없음'
+            }</li>
+            <a class="lib-list__col lib--href text--gray" href="${
+              selectedLibData.HMPG_URL
+            }"><label>홈페이지: </label>${
+              selectedLibData.HMPG_URL || '홈페이지 정보 없음'
+            }</a>
             </ul>
+            <img class="reading-girl__svg" src="schoolbooks-monochrome.svg" alt="family">
             `;
             sidebar.insertAdjacentHTML('beforeend', html);
 
@@ -113,7 +124,7 @@ if (navigator.geolocation)
           });
         });
     },
-    function () {
-      alert('Could not get your position');
+    function (err) {
+      alert(`ERROR(${err.code}): ${err.message}: Could not get your position`);
     }
   );
