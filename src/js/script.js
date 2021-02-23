@@ -1,6 +1,6 @@
 'use strict';
 
-import * as config from './config.js';
+// import * as config from './config.js';
 
 // console.log('*******' + config.ADRES + '*******');
 
@@ -141,7 +141,7 @@ function currentPositionSuccessCallback(position) {
           selectedLibData.HMPG_URL || '홈페이지 정보 없음'
         }</a>
         </ul>
-        <img class="reading-girl__svg" src="src/svg/schoolbooks-monochrome.svg" alt="family">
+        <img class="reading-girl__svg" src="schoolbooks-monochrome.svg" alt="family">
         `;
         sidebar.insertAdjacentHTML('beforeend', html);
 

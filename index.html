@@ -1,1 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" href="/schoolbooks-monochrome.f3347045.svg"><link rel="stylesheet" href="/index.036c0c3e.css"><link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.css"><link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.Default.css"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin><script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin></script><script defer src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script><script defer src="/index.6a4e6b2b.js"></script><title>Public Libraries in Seoul</title></head><body> <header class="header"> <a href="" class="btn closer logo__title">Public Libraries<br> in Seoul <i class="fa-book-reader fas"></i></a> <div class="input text-small"> <input class="input__text" type="text" placeholder="도서관명으로 검색하기: 예) 가온도서관"> </div> <button class="btn btn__search btn-grad"> <i class="fa-compass far"></i>주변 도서관 찾기 </button> </header> <div class="map-box"> <aside class="disabled hidden sidebar"> </aside> <div id="map"></div> </div> </body><script src="https://kit.fontawesome.com/4320904247.js" crossorigin></script></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="src/svg/schoolbooks-monochrome.svg" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <!-- The links are from https://leaflet.github.io/Leaflet.markercluster/#using-the-plugin -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.Default.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"
+    ></script>
+    <script defer src="src/js/script.js"></script>
+    <title>Public Libraries in Seoul</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="" class="btn logo__title closer"
+        >Public Libraries<br />
+        in Seoul <i class="fas fa-book-reader"></i
+      ></a>
+      <div class="input text-small">
+        <input
+          class="input__text"
+          type="text"
+          placeholder="도서관명으로 검색하기: 예) 가온도서관"
+        />
+      </div>
+      <button class="btn btn__search btn-grad">
+        <i class="far fa-compass"></i>주변 도서관 찾기
+      </button>
+    </header>
+    <div class="map-box">
+      <aside class="sidebar hidden disabled">
+        <!-- <div class="close">&#10005;</div> -->
+      </aside>
+      <div id="map"></div>
+    </div>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/4320904247.js"
+    crossorigin="anonymous"
+  ></script>
+</html>

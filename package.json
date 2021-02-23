@@ -3,25 +3,8 @@
   "version": "1.0.0",
   "description": "서울특별시 각 자치구의 공공도서관의 현황정보를 볼 수 있는 웹 어플리케이션입니다.",
   "main": "index.html",
-  "dependencies": {
-    "leaflet": "^1.7.1",
-    "leaflet.markercluster": "^1.4.1"
-  },
-  "devDependencies": {
-    "@parcel/optimizer-cssnano": "^2.0.0-nightly.608",
-    "@parcel/optimizer-htmlnano": "^2.0.0-nightly.608",
-    "@parcel/packager-css": "^2.0.0-nightly.608",
-    "@parcel/packager-html": "^2.0.0-nightly.608",
-    "@parcel/transformer-css": "^2.0.0-nightly.608",
-    "@parcel/transformer-html": "^2.0.0-nightly.608",
-    "@parcel/transformer-postcss": "^2.0.0-nightly.608",
-    "@parcel/transformer-posthtml": "^2.0.0-nightly.608",
-    "parcel": "^2.0.0-nightly.606",
-    "postcss": "^8.2.6"
-  },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cottonpup/seoul-public-library-app/issues"
   },
-  "homepage": "https://github.com/cottonpup/seoul-public-library-app#readme"
+  "homepage": "https://github.com/cottonpup/seoul-public-library-app#readme",
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  }
 }
