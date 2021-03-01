@@ -90,7 +90,7 @@ const createHTMLElement = function (data) {
   sidebar.innerHTML = '';
   const html = `
           <div class="close">&#10005;</div>
-          <h1 class="sidebar__title text--big">도서관 정보</h1>
+          <h1 class="sidebar__title text--big border-bottom--black">도서관 정보</h1>
           <ul class="lib-list">
           <li class="lib-list__col lib__name--big"><i class="fas fa-location-arrow"></i>${
             data.LBRRY_NAME || '도서관 정보 오류'
