@@ -36,27 +36,24 @@
     <title>Public Libraries in Seoul</title>
   </head>
   <body>
-    <header
-      class="header header--box-shadow flex--space-btw header__font--italic border-bottom--black padding--medium"
-    >
-      <a href="" class="btn logo__title--big logo__title--brown"
-        >Public Libraries<br />
-        in Seoul <i class="fas fa-book-reader"></i
-      ></a>
-      <div class="input text-small ">
+    <header class="header box-shadow flex--space-btw padding--medium">
+      <button class="btn btn__search logo__title--big">
+        Public Libraries in Seoul<i class="fas fa-map-marked-alt"></i>
+      </button>
+      <div class="input">
         <input
-          class="input__text border--white"
+          class="input__text border--white box-shadow border-radius"
           type="text"
           placeholder="도서관명으로 검색하기: 예) 가온도서관"
         />
       </div>
-      <button class="btn btn__search btn-grad">
+      <button class="btn btn__search box-shadow border-radius">
         <i class="far fa-compass"></i>주변 도서관 찾기
       </button>
-    </header class="transition">
-    <div class="map-box"> 
-      <aside class="sidebar hidden disabled padding--medium">
-        <!-- <div class="close">&#10005;</div> -->
+    </header>
+    <div class="map-box">
+      <aside class="sidebar hidden disabled padding--medium box-shadow">
+        <div class="close">&#10005;</div>
       </aside>
       <div id="map"></div>
     </div>

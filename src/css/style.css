@@ -13,6 +13,8 @@ html {
 
 body {
   min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .padding--medium {
@@ -25,10 +27,6 @@ body {
 
 .border--white {
   border: 1px solid rgb(235, 238, 240);
-}
-
-.header__font--italic {
-  font-family: 'Raleway', -apple-system;
 }
 
 .transition {
@@ -47,8 +45,6 @@ body {
 aside {
   min-width: 60vh;
   min-height: 82.2vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   flex: 0.5;
   /* 패턴 추가 */
   opacity: 0.4;
@@ -57,25 +53,20 @@ aside {
 }
 
 .logo__title--big {
-  font-size: 150%;
-}
-
-.logo__title--brown {
-  color: #453b4a;
+  font-size: 110%;
+  font-weight: 900;
+  text-decoration: underline;
+  padding-top: 5px;
 }
 
 a {
-  color: rgb(150, 10, 10);
+  color: black;
   cursor: pointer;
   text-decoration: none;
 }
 
 .text-small {
   font-size: 60%;
-}
-
-.map-box {
-  display: flex;
 }
 
 .hidden {
@@ -114,7 +105,7 @@ a {
 }
 
 #map {
-  min-height: 84.2vh;
+  min-height: 85vh;
   padding: 1rem 2rem;
   z-index: 2;
   flex: 2;
@@ -131,9 +122,9 @@ a {
 .input__text {
   width: 20rem;
   height: 2.5rem;
-  border-radius: 87% 13% 87% 13% / 0% 100% 0% 100%;
-  box-shadow: 0 0 20px #eee;
-  margin-top: 10px;
+  /* border-radius: 87% 13% 87% 13% / 0% 100% 0% 100%; */
+  /* box-shadow: 0 0 20px #eee; */
+  /* margin-top: 10px; */
 }
 
 .btn {
@@ -144,31 +135,21 @@ a {
 .btn__search {
   color: #000000;
   font-weight: 900;
-  font-size: 15px;
+  /* font-size: 5%; */
   width: 10rem;
-  border-radius: 10px 10px 10px 10px;
   height: 2.5rem;
   padding: 5px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  background-color: rgb(255, 255, 255);
 }
 
-.btn-grad {
-  font-weight: 400;
-  font-size: 17px;
-  color: #000000;
-  border-radius: 10px 10px 10px 10px;
-  display: block;
-
-  box-shadow: 0 0 20px #eee;
-  border: 1px solid rgb(235, 238, 240);
-}
-
-.btn-grad:hover {
-  background-position: right center;
-  text-decoration: none;
+.fa-map-marked-alt {
+  color: #4285f4;
+  padding-left: 3px;
 }
 
 .fa-compass {
+  color: #4285f4;
   padding-right: 3px;
 }
 
@@ -212,4 +193,16 @@ label {
 
 .text--gray {
   color: #453b4a;
+}
+
+.box-shadow {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
+}
+
+.border-radius {
+  border-radius: 8px;
+}
+
+.map-box {
+  display: flex;
 }
