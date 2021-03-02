@@ -4,6 +4,7 @@
   padding: 0;
   border: 0;
   text-align: center;
+  outline: none;
 }
 
 html {
@@ -15,6 +16,10 @@ body {
   min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a:hover {
+  color: #4285f4;
 }
 
 .padding--medium {
@@ -42,31 +47,33 @@ body {
   box-shadow: 0 0 20px #eee;
 }
 
+input {
+  width: 220px;
+}
+
 aside {
-  min-width: 60vh;
+  min-width: 50vh;
   min-height: 82.2vh;
   flex: 0.5;
-  /* 패턴 추가 */
-  opacity: 0.4;
-  background-image: radial-gradient(#ecbe54 1px, #ffffff 1px);
-  background-size: 20px 20px;
+  border-right: 1px solid #dadce0;
 }
 
 .logo__title--big {
   font-size: 110%;
   font-weight: 900;
   text-decoration: underline;
-  padding-top: 5px;
+  /* padding-top: 5px; */
+}
+
+header {
+  background-color: #ffff;
+  box-shadow: inset 0px -1px 5px -1px #ccc;
 }
 
 a {
   color: black;
   cursor: pointer;
   text-decoration: none;
-}
-
-.text-small {
-  font-size: 60%;
 }
 
 .hidden {
@@ -114,9 +121,10 @@ a {
 
 .close {
   position: relative;
-  top: 5px;
-  left: 180px;
+  top: 15px;
+  left: 150px;
   cursor: pointer;
+  /* color: #dadce0; */
 }
 
 .input__text {
@@ -125,6 +133,7 @@ a {
   /* border-radius: 87% 13% 87% 13% / 0% 100% 0% 100%; */
   /* box-shadow: 0 0 20px #eee; */
   /* margin-top: 10px; */
+  text-align: center;
 }
 
 .btn {
@@ -154,7 +163,12 @@ a {
 }
 
 .sidebar__title {
+  padding-top: 10px;
   padding-bottom: 5px;
+  margin-bottom: 8px;
+  /* background-color: #ffffff; */
+  font-size: 1.2em;
+  color: #453b4a;
 }
 
 .lib-list__col {
@@ -164,15 +178,18 @@ a {
   padding: 5px;
   font-weight: 500;
   color: #453b4a;
+  font-size: 0.9em;
 }
 
 .lib__name--big {
-  font-size: 120%;
+  font-size: 110%;
   font-family: 'Raleway', -apple-system;
   transition: transform 1s, opacity 1s;
-  color: #bc2e1e;
-  padding: 15px 0px;
+  color: #18335e;
+  padding: 10px 0px;
+  /* background-color: #ffffff; */
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .lib--href {
@@ -187,7 +204,7 @@ a {
 
 label {
   color: black;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 700;
 }
 
@@ -205,4 +222,30 @@ label {
 
 .map-box {
   display: flex;
+}
+
+input {
+  position: relative;
+  top: 10px;
+}
+
+.fa-search-location {
+  color: #4285f4;
+  position: relative;
+  top: 10px;
+  left: 15px;
+  border-left: 1px solid #dadce0;
+  padding-left: 6px;
+}
+
+.fa-bars {
+  color: #dadce0;
+  position: relative;
+  top: 10px;
+  right: 15px;
+}
+
+.lib-divider {
+  border-top: 1px solid #dadce0;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 -1px 0px rgb(0 0 0 / 2%);
 }

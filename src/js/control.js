@@ -1,7 +1,7 @@
 'use strict';
 
 const header = document.querySelector('.header');
-const mapDiv = document.querySelector('#map');
+const mapPopup = document.querySelector('#map');
 const nearbyBtn = document.querySelector('.btn__search');
 const map = L.map('map').setView([37.5642135, 127.0016985], 11);
 const cluster = L.markerClusterGroup();
@@ -12,14 +12,14 @@ const sidebar = document.querySelector('.sidebar');
 sidebar.addEventListener('click', function (e) {
   if (e.target.classList.contains('close')) {
     sidebar.classList.add('hidden');
-    mapDiv.classList.add('map-active');
+    mapPopup.classList.add('map-active');
     setTimeout(() => sidebar.classList.add('disabled'), 400);
   }
 });
 
 /////////////////////////////////////////////////////////////////////////////
 // RENDER MARK 마크 랜더링
-const renderMark = function (library, cluster) {
+const renderMark = (library, cluster) => {
   const marker = L.marker([library.XCNTS, library.YDNTS]);
   marker
     // .addTo(map) // this line is making duplicates
@@ -40,7 +40,7 @@ const renderMark = function (library, cluster) {
 
 /////////////////////////////////////////////////////////////////////////////
 // MAP SETVIEW ANIMATION 맵 SetView 애니메이션
-const mapSetView = function (lat, lng, zoomScale) {
+const mapSetView = (lat, lng, zoomScale) => {
   map.setView(lat, lng, zoomScale, {
     animate: true,
     pan: {
@@ -51,7 +51,7 @@ const mapSetView = function (lat, lng, zoomScale) {
 
 /////////////////////////////////////////////////////////////////////////////
 // NEARBY LIBRARY CLICK EVENT 주변 도서관 찾기 이벤트
-const nearbyBtnClick = function (position) {
+const nearbyBtnClick = (position) => {
   // Reverse geocoding
   // 너무 빨리해도 오류가 뜸
   let { latitude } = position.coords;
@@ -85,16 +85,16 @@ const resizeObserver = new ResizeObserver(() => {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-const createHTMLElement = function (data) {
+const createHTMLElement = (data) => {
   //TODO: 이용자격 글자수 25자 넘으면 truncate => eclipse button
   sidebar.innerHTML = '';
   const html = `
           <div class="close">&#10005;</div>
-          <h1 class="sidebar__title border-bottom--black">도서관 정보</h1>
-          <ul class="lib-list">
           <li class="lib-list__col lib__name--big"><i class="fas fa-location-arrow"></i>${
             data.LBRRY_NAME || '도서관 정보 오류'
           }</li>
+          <div class="lib-divider"></div>
+          <ul class="lib-list padding--medium">
           <li class="lib-list__col text--gray"><label>주소: </label>${
             data.ADRES || '주소 정보 없음'
           }</li>
@@ -116,13 +116,14 @@ const createHTMLElement = function (data) {
     data.HMPG_URL || '홈페이지 정보 없음'
   }</a>
           </ul>
+          <div class="lib-divider"></div>
           <img class="reading-girl__svg" src="/src/svg/schoolbooks-monochrome.svg" alt="family">
           `;
   sidebar.insertAdjacentHTML('beforeend', html);
 };
 
 /////////////////////////////////////////////////////////////////////////////
-const libAPIFetch = function () {
+const libAPIFetch = () => {
   fetch(
     'http://openapi.seoul.go.kr:8088/5a51676c6a64756434367a44666f47/json/SeoulPublicLibraryInfo/1/187'
   )
@@ -141,7 +142,7 @@ const libAPIFetch = function () {
 
       /////////////////////////////////////////////////////////////////////////////
       // MAP POPUP EVENT 맵 팝업 이벤트
-      mapDiv.addEventListener('click', function (e) {
+      mapPopup.addEventListener('click', function (e) {
         if (!e.target.closest('.leaflet-popup-content-wrapper')) return;
         const selectedName = e.target.closest('.leaflet-popup-content-wrapper')
           .innerText;
@@ -151,15 +152,22 @@ const libAPIFetch = function () {
 
         createHTMLElement(selectedLibData);
 
+        mapSetView([selectedLibData.XCNTS, selectedLibData.YDNTS], 15);
+
         sidebar.classList.add('display');
         sidebar.classList.add('slideIn');
         setTimeout(() => sidebar.classList.remove('slideIn'), 1000);
         sidebar.classList.remove('hidden');
         sidebar.classList.remove('disabled');
-
-        mapSetView([selectedLibData.XCNTS, selectedLibData.YDNTS], 15);
       });
     });
+};
+
+const openSidebar = () => {
+  sidebar.classList.toggle('display');
+  sidebar.classList.toggle('slideIn');
+  sidebar.classList.toggle('hidden');
+  sidebar.classList.toggle('disabled');
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -185,8 +193,12 @@ function init() {
     });
   }
 
+  document
+    .querySelector('.fa-bars')
+    .addEventListener('click', () => openSidebar());
+
   // RESIZE OBSERVER EVENT
-  resizeObserver.observe(mapDiv);
+  resizeObserver.observe(mapPopup);
 
   libAPIFetch();
 }

@@ -36,24 +36,36 @@
     <title>Public Libraries in Seoul</title>
   </head>
   <body>
-    <header class="header box-shadow flex--space-btw padding--medium">
+    <header class="header flex--space-btw padding--medium">
       <button class="btn btn__search logo__title--big">
         Public Libraries in Seoul<i class="fas fa-map-marked-alt"></i>
       </button>
-      <div class="input">
+      <div class="input__text box-shadow border-radius">
+        <i class="fas fa-bars btn"></i>
         <input
-          class="input__text border--white box-shadow border-radius"
           type="text"
           placeholder="도서관명으로 검색하기: 예) 가온도서관"
         />
+        <i class="fas fa-search-location btn"></i>
       </div>
       <button class="btn btn__search box-shadow border-radius">
         <i class="far fa-compass"></i>주변 도서관 찾기
       </button>
     </header>
     <div class="map-box">
-      <aside class="sidebar hidden disabled padding--medium box-shadow">
+      <aside class="sidebar hidden disabled box-shadow">
         <div class="close">&#10005;</div>
+        <li class="lib-list__col lib__name--big">도서관 정보 없음</li>
+        <div class="lib-divider"></div>
+        <li class="lib-list__col text--gray">
+          도서관 선택 및 검색을 부탁드려요!
+        </li>
+        <div class="lib-divider"></div>
+        <img
+          class="reading-girl__svg"
+          src="/src/svg/schoolbooks-monochrome.svg"
+          alt="family"
+        />
       </aside>
       <div id="map"></div>
     </div>
