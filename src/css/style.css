@@ -151,6 +151,9 @@ a {
   /* margin-top: 10px; */
   background-color: rgb(255, 255, 255);
 }
+.btn__search:active {
+  box-shadow: inset 0px -1px 5px -1px #ccc;
+}
 
 .fa-map-marked-alt {
   color: #4285f4;
@@ -248,4 +251,24 @@ input {
 .lib-divider {
   border-top: 1px solid #dadce0;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 -1px 0px rgb(0 0 0 / 2%);
+}
+
+.loader {
+  position: relative;
+  left: 60px;
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #4285f4;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
