@@ -38,8 +38,8 @@ const renderMark = (library, cluster) => {
   cluster.addLayer(marker);
 };
 
-const mapSetView = (lat, lng, zoomScale) => {
-  map.setView(lat, lng, zoomScale, {
+const mapSetView = async (lat, lng, zoomScale) => {
+  await map.setView(lat, lng, zoomScale, {
     animate: true,
     pan: {
       duration: 1
@@ -54,10 +54,6 @@ const nearbyBtnClick = async (position) => {
 
   let latitude = 37.5485156;
   let longitude = 126.96857219999998;
-
-  nearbyBtn.innerHTML = '';
-  nearbyBtn.insertAdjacentHTML('beforeend', '<div class="loader"></div>');
-
   const res = await fetch(
     `https://geocode.xyz/${latitude},${longitude}?geoit=json`
   );
@@ -67,20 +63,18 @@ const nearbyBtnClick = async (position) => {
   // }
 
   const json = await res.json();
+  mapSetView([latitude, longitude], 15);
   if (!json.region.includes('Seoul')) {
     alert(
       `${json.city}의 데이터는 존재하지 않습니다. \n오직 서울시 도서관의 데이터만 가지고 있습니다. 😭`
     );
   }
 
-  if (latitude && longitude) {
-    mapSetView([latitude, longitude], 15);
-    nearbyBtn.innerHTML = '';
-    nearbyBtn.insertAdjacentHTML(
-      'beforeend',
-      '<i class="far fa-compass"></i>주변 도서관 찾기'
-    );
-  }
+  nearbyBtn.innerHTML = '';
+  nearbyBtn.insertAdjacentHTML(
+    'beforeend',
+    '<i class="far fa-compass"></i>주변 도서관 찾기'
+  );
 };
 
 const resizeObserver = new ResizeObserver(() => {
@@ -126,11 +120,9 @@ const libAPIFetch = async () => {
   const res = await fetch(
     'http://openapi.seoul.go.kr:8088/5a51676c6a64756434367a44666f47/json/SeoulPublicLibraryInfo/1/187'
   );
-
   const json = await res.json();
   row = json.SeoulPublicLibraryInfo.row;
 
-  // 마크 랜더링 함수 호출
   row.map((lib) => renderMark(lib, cluster));
 
   // after all the markers have been added to the cluster, add the cluster to the map
@@ -175,6 +167,9 @@ function init() {
   sidebarClose();
 
   nearbyBtn.addEventListener('click', function () {
+    nearbyBtn.innerHTML = '';
+    nearbyBtn.insertAdjacentHTML('beforeend', '<div class="loader"></div>');
+
     navigator.geolocation.getCurrentPosition(
       (position) => nearbyBtnClick(position),
       (err) =>
