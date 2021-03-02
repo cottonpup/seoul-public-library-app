@@ -49,32 +49,32 @@ const mapSetView = async (lat, lng, zoomScale) => {
 
 const nearbyBtnClick = async (position) => {
   // Reverse geocoding
-  // let { latitude } = position.coords;
-  // let { longitude } = position.coords;
-
-  let latitude = 37.5485156;
-  let longitude = 126.96857219999998;
-  const res = await fetch(
-    `https://geocode.xyz/${latitude},${longitude}?geoit=json`
-  );
-
-  // if (!res.ok) {
-  //   throw new Error('Something went wrong');
-  // }
-
-  const json = await res.json();
-  mapSetView([latitude, longitude], 15);
-  if (!json.region.includes('Seoul')) {
-    alert(
-      `${json.city}의 데이터는 존재하지 않습니다. \n오직 서울시 도서관의 데이터만 가지고 있습니다. 😭`
+  try {
+    let { latitude } = position.coords;
+    let { longitude } = position.coords;
+    // let latitude = 37.5485156;
+    // let longitude = 126.96857219999998;
+    const res = await fetch(
+      `https://geocode.xyz/${latitude},${longitude}?geoit=json`
     );
-  }
+    const json = await res.json();
+    console.log(json);
 
-  nearbyBtn.innerHTML = '';
-  nearbyBtn.insertAdjacentHTML(
-    'beforeend',
-    '<i class="far fa-compass"></i>주변 도서관 찾기'
-  );
+    if (json && !json.region.includes('Seoul')) {
+      alert(
+        `${json.city}의 데이터는 존재하지 않습니다. \n오직 서울시 도서관의 데이터만 가지고 있습니다. 😭`
+      );
+    }
+
+    mapSetView([latitude, longitude], 15);
+    nearbyBtn.innerHTML = '';
+    nearbyBtn.insertAdjacentHTML(
+      'beforeend',
+      '<i class="far fa-compass"></i>주변 도서관 찾기'
+    );
+  } catch (error) {
+    console.error(error.message);
+  }
 };
 
 const resizeObserver = new ResizeObserver(() => {
