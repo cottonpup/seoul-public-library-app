@@ -94,7 +94,9 @@ class Map {
       `http://openapi.seoul.go.kr:8088/${KEY}/json/SeoulPublicLibraryInfo/1/187`
     );
     const json = await res.json();
+    // console.log(json.SeoulPublicLibraryInfo.row);
     return json.SeoulPublicLibraryInfo.row;
+    // console.log(json);
   }
 }
 

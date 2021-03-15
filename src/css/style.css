@@ -26,14 +26,6 @@ a:hover {
   padding: 1rem 1rem;
 }
 
-.border-bottom--black {
-  border-bottom: 1px solid #000000;
-}
-
-.border--white {
-  border: 1px solid rgb(235, 238, 240);
-}
-
 .transition {
   transition: transform 1s, opacity 1s;
 }
@@ -250,7 +242,7 @@ input {
 
 .lib-divider {
   border-top: 1px solid #dadce0;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 -1px 0px rgb(0 0 0 / 2%);
+  /* box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 -1px 0px rgb(0 0 0 / 2%); */
 }
 
 .loader {
@@ -271,4 +263,38 @@ input {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#search-result {
+  display: inline-block;
+  width: 80%;
+  height: 30rem;
+  font-size: 6px; /* Increase font-size */
+  padding: 12px 18px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+  overflow: auto;
+}
+
+#search-result {
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#search-result li a {
+  font-weight: 600;
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 10px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 12px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: block; /* Make it into a block element to fill the whole list */
+}
+
+#search-result li a:hover {
+  background-color: #eee; /* Add a hover effect to all links, except for headers */
 }

@@ -3,6 +3,7 @@ import Map from './Map.js';
 
 class Sidebar {
   static container = document.querySelector('.sidebar');
+  static searchList = document.querySelector('#search-result');
 
   // Called once on App.init()
   static init() {
