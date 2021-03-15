@@ -30,6 +30,7 @@ class Header {
     let pattern = '';
     let flag = true;
     let data = null;
+    Sidebar.selectResultElement();
     this.searchText.addEventListener('input', (e) => {
       pattern = e.target.value;
       // console.log(pattern);
@@ -37,10 +38,6 @@ class Header {
       console.log(data);
       // if (pattern) console.log(fuse.search(pattern));
       Sidebar.createResultElement(data);
-      if (!data.length === 0) {
-        console.log(data);
-        Sidebar.selectResultElement();
-      }
 
       if (pattern.length >= 1 && flag) {
         Sidebar.openSidebar();
@@ -59,15 +56,15 @@ class Header {
       // findAllMatches: false,
       // minMatchCharLength: 1,
       // location: 0,
-      threshold: 1.0,
+      threshold: 0.5,
       // distance: 100,
       // useExtendedSearch: false,
       // ignoreLocation: false,
       // ignoreFieldNorm: false,
-      keys: ['LBRRY_NAME']
+      keys: ['LBRRY_NAME', 'ADRES']
     };
     const list = await Map.libAPIFetch();
-    // console.log(list);
+    console.log(list);
     const fuse = new Fuse(list, options);
 
     // Change the pattern

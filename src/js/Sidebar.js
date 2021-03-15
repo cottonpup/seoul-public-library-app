@@ -48,18 +48,28 @@ class Sidebar {
         <li class="lib-list__col text--gray"><label>운영시간: </label>${
           data.OP_TIME || '운영시간 정보 없음'
         }</li>
+      
         <li class="lib-list__col text--gray"><label>휴관일: </label>${
           data.FDRM_CLOSE_DATE || '휴관일 정보 없음'
         }</li>
+        
         <li class="lib-list__col text--gray><label>문의처: </label>${
           data.FXNUM || '문의처 정보 없음'
         }</li>
+        <a class="lib-list__col lib--href text--gray"><label>층별안내: </label>${
+          data.FLOOR_DC || '층별안내 정보 없음'
+        }</a>
+        <li class="lib-list__col lib--href text--gray"><label>찾아오시는 길: </label>${
+          data.TFCMN || '찾아오시는 길 정보 없음'
+        }</li>
+
         <li class="lib-list__col text--gray"><label>이용자격: </label>${
           data.MBER_SBSCRB_RQISIT || '이용자격 정보 없음'
         }</li>
         <a class="lib-list__col lib--href text--gray" href="${
           data.HMPG_URL
         }"><label>홈페이지: </label>${data.HMPG_URL || '홈페이지 정보 없음'}</a>
+
         </ul>
 
         <img class="reading-girl__svg" src="/src/svg/schoolbooks-monochrome.svg" alt="family">
@@ -110,10 +120,20 @@ class Sidebar {
   }
 
   static selectResultElement() {
-    this.container.addEventListener('click', (e) => {
+    this.container.addEventListener('click', async (e) => {
       const searchLibraryName = e.target.closest('#search-result > li > a')
         .innerText;
-      console.log(searchLibraryName);
+      if (searchLibraryName !== '결과없음') {
+        const data = await Map.libAPIFetch();
+        const selectedLibrary = data.filter(
+          (data) => data.LBRRY_NAME === searchLibraryName
+        );
+        // console.log(selectedLibrary[0].XCNTS, selectedLibrary[0].YDNTS);
+        Map.mapSetView(
+          [selectedLibrary[0].XCNTS, selectedLibrary[0].YDNTS],
+          15
+        );
+      }
     });
   }
 }
