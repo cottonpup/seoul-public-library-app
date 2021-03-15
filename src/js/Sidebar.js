@@ -1,9 +1,9 @@
 'use strict';
 import Map from './Map.js';
+import Header from './Header.js';
 
 class Sidebar {
   static container = document.querySelector('.sidebar');
-  static searchList = document.querySelector('#search-result');
 
   // Called once on App.init()
   static init() {
@@ -16,29 +16,32 @@ class Sidebar {
   // Close the sidebar
   static closeSidebar() {
     Sidebar.container.classList.add('hidden');
+    Sidebar.container.classList.remove('slideIn');
+    Sidebar.container.classList.remove('display');
     Map.container.classList.add('map-active');
     setTimeout(() => Sidebar.container.classList.add('disabled'), 200);
   }
 
   // Open the sidebar
   static openSidebar() {
-    Sidebar.container.classList.toggle('display');
-    Sidebar.container.classList.toggle('slideIn');
-    Sidebar.container.classList.toggle('hidden');
-    Sidebar.container.classList.toggle('disabled');
+    Sidebar.container.classList.add('display');
+    Sidebar.container.classList.add('slideIn');
+    Sidebar.container.classList.remove('hidden');
+    Sidebar.container.classList.remove('disabled');
   }
 
   // Re-render sidebar container with different data.
   static createHTMLElement(data) {
     //TODO: 이용자격 글자수 25자 넘으면 truncate => eclipse button
     Sidebar.container.innerHTML = '';
+    Header.searchText.value = '';
     const html = `
         <div class="close">&#10005;</div>
         <li class="lib-list__col lib__name--big"><i class="fas fa-location-arrow"></i>${
           data.LBRRY_NAME || '도서관 정보 오류'
         }</li>
-        <div class="lib-divider"></div>
-        <ul class="lib-list padding--medium">
+
+        <ul class="lib-list padding--medium lib-list--background">
         <li class="lib-list__col text--gray"><label>주소: </label>${
           data.ADRES || '주소 정보 없음'
         }</li>
@@ -58,7 +61,7 @@ class Sidebar {
           data.HMPG_URL
         }"><label>홈페이지: </label>${data.HMPG_URL || '홈페이지 정보 없음'}</a>
         </ul>
-        <div class="lib-divider"></div>
+
         <img class="reading-girl__svg" src="/src/svg/schoolbooks-monochrome.svg" alt="family">
       `;
     Sidebar.container.insertAdjacentHTML('beforeend', html);
@@ -72,6 +75,46 @@ class Sidebar {
       (row) => row.LBRRY_NAME === selectedLibraryName
     );
     return selectedLibraryData;
+  }
+
+  // Search libraries
+  static initSearch() {
+    this.container.innerHTML = '';
+    const html = `        
+      <div class="close">&#10005;</div>
+      <!-- SEARCH Libraries -->
+      <li class="lib-list__col lib__name--big">검색결과</li>
+      <ul id="search-result">
+      <div class="lib-divider"></div>
+      </ul>`;
+    this.container.insertAdjacentHTML('beforeend', html);
+  }
+
+  static createResultElement(data) {
+    this.initSearch();
+    const searchList = document.querySelector('#search-result');
+    if (data.length >= 1) {
+      searchList.innerHTML = '';
+      data.map((data) => {
+        const html = `
+          <li><a href="#">${data.item.LBRRY_NAME}</a></li>`;
+        searchList.insertAdjacentHTML('beforeend', html);
+      });
+    } else if (data.length === 0) {
+      searchList.innerHTML = '';
+      console.log('데이터 없음');
+      const html = `
+        <li><a href="#">결과없음</a></li>`;
+      searchList.insertAdjacentHTML('beforeend', html);
+    }
+  }
+
+  static selectResultElement() {
+    this.container.addEventListener('click', (e) => {
+      const searchLibraryName = e.target.closest('#search-result > li > a')
+        .innerText;
+      console.log(searchLibraryName);
+    });
   }
 }
 

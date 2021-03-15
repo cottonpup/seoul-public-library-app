@@ -15,7 +15,14 @@ class Header {
   // Called once on App.init()
   static init() {
     // Open sidebar when clicking burger
-    Header.burger.addEventListener('click', Sidebar.openSidebar);
+    Header.burger.addEventListener('click', () => {
+      if (!Sidebar.container.classList.contains('display')) {
+        console.log('엽니다');
+        Sidebar.openSidebar();
+      } else if (Sidebar.container.classList.contains('display')) {
+        Sidebar.closeSidebar();
+      }
+    });
     Header.search();
   }
 
@@ -29,7 +36,12 @@ class Header {
       data = fuse.search(pattern);
       console.log(data);
       // if (pattern) console.log(fuse.search(pattern));
-      this.createHTMLElement(data);
+      Sidebar.createResultElement(data);
+      if (!data.length === 0) {
+        console.log(data);
+        Sidebar.selectResultElement();
+      }
+
       if (pattern.length >= 1 && flag) {
         Sidebar.openSidebar();
         flag = false;
@@ -47,7 +59,7 @@ class Header {
       // findAllMatches: false,
       // minMatchCharLength: 1,
       // location: 0,
-      threshold: 0.3,
+      threshold: 1.0,
       // distance: 100,
       // useExtendedSearch: false,
       // ignoreLocation: false,
@@ -61,24 +73,6 @@ class Header {
     // Change the pattern
 
     if (pattern) return fuse.search(pattern);
-  }
-
-  static createHTMLElement(data) {
-    Sidebar.searchList.innerHTML = '';
-    const divider = `<div class="lib-divider"></div>`;
-    Sidebar.searchList.insertAdjacentHTML('beforeend', divider);
-    if (data.length >= 1) {
-      data.map((data) => {
-        const html = `
-        </div><li><a href="#">${data.item.LBRRY_NAME}</a></li>`;
-        Sidebar.searchList.insertAdjacentHTML('beforeend', html);
-      });
-    } else if (data.length === 0) {
-      console.log('데이터 없음');
-      const html = `
-      </div><li><a href="#">결과없음</a></li>`;
-      Sidebar.searchList.insertAdjacentHTML('beforeend', html);
-    }
   }
 }
 

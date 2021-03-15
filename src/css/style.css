@@ -298,3 +298,12 @@ input {
 #search-result li a:hover {
   background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
+
+.lib-list--background {
+  border: 1px solid #ddd;
+  background-color: #f6f6f6; /* Grey background color */
+}
+.lib-list {
+  height: 15em;
+  overflow: auto;
+}
