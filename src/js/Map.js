@@ -13,6 +13,8 @@ class Map {
     Map.driver.invalidateSize();
   });
 
+  static cachedLibraries = new globalThis.Map();
+
   // Called once on App.init()
   static initMarkerHandler(row) {
     Map.container.addEventListener('click', function (e) {
@@ -42,7 +44,12 @@ class Map {
           className: `popup`
         })
       )
-      .setPopupContent(`${library.LBRRY_NAME}`);
+      .setPopupContent(`<b>${library.LBRRY_NAME}</b><br>클릭하여 자세히 보기`);
+
+    Map.cachedLibraries.set(library.LBRRY_NAME, {
+      marker: marker,
+      coordinates: [library.XCNTS, library.YDNTS]
+    });
 
     // adding the markers to the cluster
     Map.cluster.addLayer(marker);
@@ -61,14 +68,16 @@ class Map {
   static async nearbyBtnClick(position) {
     // Reverse geocoding
     try {
-      let { latitude } = position.coords;
-      let { longitude } = position.coords;
-      // let latitude = 37.5485156;
-      // let longitude = 126.96857219999998;
+      // let { latitude } = position.coords;
+      // let { longitude } = position.coords;
+      let latitude = 37.5485156;
+      let longitude = 126.96857219999998;
+      console.time('nearbyBtnClick time');
       const res = await fetch(
         `https://geocode.xyz/${latitude},${longitude}?geoit=json`
       );
       const json = await res.json();
+      console.timeLog('nearbyBtnClick time');
       console.log(json);
 
       if (json)

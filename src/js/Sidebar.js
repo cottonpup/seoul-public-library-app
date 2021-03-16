@@ -80,7 +80,8 @@ class Sidebar {
   static selectedLibraryData(e, row) {
     const popup = e.target.closest('.leaflet-popup-content-wrapper');
     if (!popup) return;
-    const selectedLibraryName = popup.innerText;
+    const selectedLibraryName = popup.innerText.split(/\r?\n/)[0];
+    console.log(selectedLibraryName);
     const selectedLibraryData = row.find(
       (row) => row.LBRRY_NAME === selectedLibraryName
     );
@@ -122,17 +123,15 @@ class Sidebar {
   static selectResultElement() {
     this.container.addEventListener('click', async (e) => {
       const searchLibraryName = e.target.closest('#search-result > li > a')
-        .innerText;
+        .innerText; // input text
       if (searchLibraryName !== '결과없음') {
-        const data = await Map.libAPIFetch();
-        const selectedLibrary = data.filter(
-          (data) => data.LBRRY_NAME === searchLibraryName
-        );
-        // console.log(selectedLibrary[0].XCNTS, selectedLibrary[0].YDNTS);
-        Map.mapSetView(
-          [selectedLibrary[0].XCNTS, selectedLibrary[0].YDNTS],
-          15
-        );
+        // 1. Get cached Library marker & coords
+        const cached = Map.cachedLibraries.get(searchLibraryName);
+
+        // 2. User coords to center the view
+        Map.mapSetView(cached.coordinates, 17);
+        // 3. use the marker to open popup
+        cached.marker.openPopup();
       }
     });
   }
