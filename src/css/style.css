@@ -330,6 +330,18 @@ label {
 }
 
 /* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .close {
+    left: 290px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .close {
+    left: 220px;
+  }
+}
+
 @media screen and (max-width: 695px) {
   .input__text {
     font-size: 60%;
@@ -341,7 +353,7 @@ label {
   }
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 640px) {
   .input__text {
     width: 17rem;
   }
@@ -355,7 +367,7 @@ label {
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 580px) {
   .btn__search {
     width: 6rem;
   }
@@ -365,7 +377,7 @@ label {
   }
 }
 
-@media screen and (max-width: 511px) {
+@media screen and (max-width: 520px) {
   .btn__search {
     width: 5rem;
   }
@@ -377,6 +389,16 @@ label {
   .btn__nearby {
     padding: 5px;
     word-break: keep-all;
+  }
+
+  aside {
+    /* width: 10em; */
+    min-width: 40vh;
+    font-size: 80%;
+  }
+
+  .close {
+    left: 120px;
   }
 }
 
@@ -404,9 +426,17 @@ label {
     padding: 5px;
     word-break: keep-all;
   }
+
+  aside {
+    font-size: 80%;
+  }
+
+  .close {
+    left: 130px;
+  }
 }
 
-@media screen and (max-width: 408px) {
+@media screen and (max-width: 411px) {
   .btn__search {
     font-size: 60%;
     width: 4rem;
@@ -447,11 +477,33 @@ label {
     font-size: 5%;
     /* color: red; */
   }
+
+  aside {
+    font-size: 70%;
+  }
+
+  .close {
+    left: 130px;
+  }
+}
+
+@media screen and (max-width: 375px) and (max-height: 667px) {
+  .close {
+    left: 110px;
+  }
 }
 
 @media screen and (max-width: 348px) {
   .input__text {
     width: 8rem;
+  }
+
+  aside {
+    font-size: 50%;
+  }
+
+  .close {
+    left: 100px;
   }
 
   .btn__nearby {
