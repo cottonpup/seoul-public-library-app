@@ -32,14 +32,15 @@
       src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"
     ></script>
     <!-- <script defer type="module" src="src/js/script.js"></script> -->
-    <script defer type="module" src="src/js/App.js"></script>
+    <!-- The defer attribute has no effect on module scripts — they defer by default. -->
+    <script type="module" src="src/js/App.js"></script>
     <title>Public Libraries in Seoul</title>
   </head>
   <body>
     <header class="header flex--space-btw padding--medium">
-      <button class="btn btn__search logo__title--big">
+      <a class="btn btn__search logo__title--big">
         Public Libraries in Seoul<i class="fas fa-map-marked-alt"></i>
-      </button>
+      </a>
       <div class="input__text box-shadow border-radius">
         <i class="fas fa-bars btn"></i>
         <input
