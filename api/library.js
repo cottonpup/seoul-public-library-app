@@ -16,7 +16,9 @@ async function fetch(url) {
 };
 
 module.exports = async (req, res) => {
-  const responseBody = await fetch("http://openapi.seoul.go.kr:8088/5a51676c6a64756434367a44666f47/json/SeoulPublicLibraryInfo/1/187"); //TODO
+  const responseBody = await fetch(
+    `http://openapi.seoul.go.kr:8088/${process.env.LIBRARY_SEOUL_API_KEY}/json/SeoulPublicLibraryInfo/1/187`
+  );
   const row = responseBody.SeoulPublicLibraryInfo.row;
   res.status(200).json(row);
 };
