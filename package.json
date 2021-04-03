@@ -21,6 +21,7 @@
     "parcel": "^1.12.4"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "fuse.js": "^6.4.6"
   }
 }

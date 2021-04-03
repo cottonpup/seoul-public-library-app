@@ -99,13 +99,9 @@ class Map {
   }
 
   static async libAPIFetch() {
-    const res = await fetch(
-      `http://openapi.seoul.go.kr:8088/${KEY}/json/SeoulPublicLibraryInfo/1/187`
-    );
-    const json = await res.json();
-    // console.log(json.SeoulPublicLibraryInfo.row);
-    return json.SeoulPublicLibraryInfo.row;
-    // console.log(json);
+    const res = await fetch(`/api/library`);
+    const row = await res.json();
+    return row;
   }
 }
 
