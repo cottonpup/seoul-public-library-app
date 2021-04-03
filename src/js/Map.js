@@ -1,6 +1,5 @@
 'use strict';
 import Sidebar from './Sidebar.js';
-import { SEOUL_LIB_API_KEY as KEY } from './config.js';
 
 class Map {
   static container = document.querySelector('#map'); // MAP CONTAINER BOX
