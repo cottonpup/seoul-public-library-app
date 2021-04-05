@@ -60,7 +60,8 @@ input {
 
 aside {
   min-width: 50vh;
-  min-height: 82.2vh;
+  height: 100%;
+  /* min-height: 82.2vh; */
   flex: 0.5;
   border-right: 1px solid #dadce0;
 }
