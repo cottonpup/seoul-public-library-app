@@ -3,76 +3,73 @@ import Map from './Map.js';
 import Header from './Header.js';
 
 class Sidebar {
-  static container = document.querySelector('.sidebar');
+  static container = document.querySelector('.map-box__sidebar');
 
   // Called once on App.init()
   static init() {
     // Close sidebar when you click close (X) button
     Sidebar.container.addEventListener('click', function (e) {
-      if (e.target.classList.contains('close')) Sidebar.closeSidebar();
+      if (e.target.classList.contains('map-box__close')) Sidebar.closeSidebar();
     });
   }
 
   // Close the sidebar
   static closeSidebar() {
-    Sidebar.container.classList.add('hidden');
-    Sidebar.container.classList.remove('slideIn');
-    Sidebar.container.classList.remove('display');
+    Sidebar.container.classList.add('map-box__sidebar--hidden');
+    Sidebar.container.classList.remove('map-box__sidebar--slideIn');
+    Sidebar.container.classList.remove('map-box__sidebar--display');
     Map.container.classList.add('map-active');
-    setTimeout(() => Sidebar.container.classList.add('disabled'), 200);
+    setTimeout(
+      () => Sidebar.container.classList.add('map-box__sidebar--disabled'),
+      200
+    );
   }
 
   // Open the sidebar
   static openSidebar() {
-    Sidebar.container.classList.add('display');
-    Sidebar.container.classList.add('slideIn');
-    Sidebar.container.classList.remove('hidden');
-    Sidebar.container.classList.remove('disabled');
+    Sidebar.container.classList.add('map-box__sidebar--display');
+    Sidebar.container.classList.add('map-box__sidebar--slideIn');
+    Sidebar.container.classList.remove('map-box__sidebar--hidden');
+    Sidebar.container.classList.remove('map-box__sidebar--disabled');
   }
 
   // Re-render sidebar container with different data.
   static createHTMLElement(data) {
     //TODO: 이용자격 글자수 25자 넘으면 truncate => eclipse button
+    // TODO: lib-list padding--medium lib-list--background ===> map-box__list
     Sidebar.container.innerHTML = '';
     Header.searchText.value = '';
     const html = `
-        <div class="close">&#10005;</div>
-        <li class="lib-list__col lib__name--big"><i class="fas fa-location-arrow"></i>${
+        <div class="map-box__close">&#10005;</div>
+        <li class="map-box__result map-box__title"><i class="fas fa-location-arrow"></i>${
           data.LBRRY_NAME || '도서관 정보 오류'
         }</li>
-
-        <ul class="lib-list padding--medium lib-list--background">
-        <li class="lib-list__col text--gray"><label>주소: </label>${
-          data.ADRES || '주소 정보 없음'
-        }</li>
-        <li class="lib-list__col text--gray"><label>운영시간: </label>${
+        <ul class="map-box__list">
+        <li><label>주소: </label>${data.ADRES || '주소 정보 없음'}</li>
+        <li><label>운영시간: </label>${
           data.OP_TIME || '운영시간 정보 없음'
         }</li>
       
-        <li class="lib-list__col text--gray"><label>휴관일: </label>${
+        <li><label>휴관일: </label>${
           data.FDRM_CLOSE_DATE || '휴관일 정보 없음'
         }</li>
         
-        <li class="lib-list__col text--gray><label>문의처: </label>${
-          data.FXNUM || '문의처 정보 없음'
-        }</li>
-        <a class="lib-list__col lib--href text--gray"><label>층별안내: </label>${
+        <li><label>문의처: </label>${data.FXNUM || '문의처 정보 없음'}</li>
+        <li><label>층별안내: </label>${
           data.FLOOR_DC || '층별안내 정보 없음'
-        }</a>
-        <li class="lib-list__col lib--href text--gray"><label>찾아오시는 길: </label>${
+        }</li>
+        <li><label>찾아오시는 길: </label>${
           data.TFCMN || '찾아오시는 길 정보 없음'
         }</li>
-
-        <li class="lib-list__col text--gray"><label>이용자격: </label>${
+        <li><label>이용자격: </label>${
           data.MBER_SBSCRB_RQISIT || '이용자격 정보 없음'
         }</li>
-        <a class="lib-list__col lib--href text--gray" href="${
-          data.HMPG_URL
-        }"><label>홈페이지: </label>${data.HMPG_URL || '홈페이지 정보 없음'}</a>
-
+        <li 
+        class="map-box__list--link"
+        onClick="location.href='${data.HMPG_URL}';"><label>홈페이지: </label>${
+      data.HMPG_URL || '홈페이지 정보 없음'
+    }</li>
         </ul>
-
-        <img class="reading-girl__svg" src="/src/svg/schoolbooks-monochrome.svg" alt="family">
       `;
     Sidebar.container.insertAdjacentHTML('beforeend', html);
   }
@@ -92,10 +89,10 @@ class Sidebar {
   static initSearch() {
     this.container.innerHTML = '';
     const html = `        
-      <div class="close">&#10005;</div>
+      <div class="map-box__close">&#10005;</div>
       <!-- SEARCH Libraries -->
-      <li class="lib-list__col lib__name--big">검색결과</li>
-      <ul id="search-result">
+      <li class="map-box__result">검색결과</li>
+      <ul class="map-box__list">
       <div class="lib-divider"></div>
       </ul>`;
     this.container.insertAdjacentHTML('beforeend', html);
@@ -103,7 +100,7 @@ class Sidebar {
 
   static createResultElement(data) {
     this.initSearch();
-    const searchList = document.querySelector('#search-result');
+    const searchList = document.querySelector('.map-box__list');
     if (data.length >= 1) {
       searchList.innerHTML = '';
       data.map((data) => {
@@ -122,8 +119,8 @@ class Sidebar {
 
   static selectResultElement() {
     this.container.addEventListener('click', async (e) => {
-      const searchLibraryName = e.target.closest('#search-result > li > a')
-        .innerText; // input text
+      const searchLibraryName = e.target.closest('ul > li > a').innerText;
+      console.log(searchLibraryName);
       if (searchLibraryName !== '결과없음') {
         // 1. Get cached Library marker & coords
         const cached = Map.cachedLibraries.get(searchLibraryName);

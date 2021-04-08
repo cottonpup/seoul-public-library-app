@@ -8,6 +8,10 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <link rel="icon" href="src/svg/schoolbooks-monochrome.svg" />
+    <script
+      src="https://kit.fontawesome.com/4320904247.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="src/css/style.css" />
     <!-- The links are from https://leaflet.github.io/Leaflet.markercluster/#using-the-plugin -->
     <link
@@ -40,48 +44,52 @@
     <title>Public Libraries in Seoul</title>
   </head>
   <body>
-    <header class="header flex--space-btw padding--medium">
-      <a class="btn btn__search logo__title--big">
+    <!-- flex--space-btw ====> header 자체에 주기 -->
+    <!-- padding--medium ====> header 자체에 주기 -->
+    <header class="header">
+      <!-- header 부모 요소로 감싸져 있는 자식들 모두 header__element 주기 -->
+      <!-- "btn",  "btn__search", "logo__title--big" ====>   header__logo 자체 주기 -->
+      <a class="header__logo" href=".">
         Public Libraries<br />in Seoul<i class="fas fa-map-marked-alt"></i>
       </a>
-      <div class="input__text box-shadow border-radius">
-        <i class="fas fa-bars btn"></i>
+      <!-- "input__text"! "box-shadow"! "border-radius! ====> header__input 자체 주기" -->
+      <div class="header__input">
+        <!-- header__input 모든 "fas" 자식들 btn 속성 주기 -->
+        <i class="fas fa-bars"></i>
         <input
           type="text"
           placeholder="도서관 검색하기: 예) 가온도서관, 강남구"
         />
-        <i class="fas fa-search-location btn"></i>
+        <i class="fas fa-search-location"></i>
       </div>
-      <button class="btn btn__nearby btn__search box-shadow border-radius">
+      <!--  "btn" "btn__nearby" "btn__search" "box-shadow" "border-radius" ===> 모두 header__nearby-btn 자체에 주기 -->
+      <button class="header__nearby-btn">
         <i class="far fa-compass"></i>주변 도서관 찾기
       </button>
     </header>
     <div class="map-box">
-      <aside class="sidebar hidden disabled box-shadow">
-        <div class="close">&#10005;</div>
-        <!-- SEARCH Libraries -->
-        <li class="lib-list__col lib__name--big">검색결과</li>
-        <ul id="search-result">
-          <div class="lib-divider"></div>
+      <!-- sidebar, aside ===> map-box__sidebar 속성 변경-->
+      <!-- hidden ===> map-box__sidebar--hidden 속성 변경-->
+      <!-- disabled ===> map-box__sidebar--disabled 속성 변경-->
+      <!-- box-shadow ===> map-box__sidebar 속성 변경-->
+      <!-- "sidebar" "hidden" "disabled" box-shadow -->
+      <aside
+        class="map-box__sidebar map-box__sidebar--disabled map-box__sidebar--disabled"
+      >
+        <!-- close ===> map-box__close -->
+        <div class="map-box__close">&#10005;</div>
+        <!-- lib-list__col lib__name--big -->
+        <!-- lib-list__col ===> map-box__result -->
+        <!-- lib__name--big ===> map-box__result -->
+        <li class="map-box__result">검색결과</li>
+        <!-- search-result ===> map-box__list -->
+        <ul class="map-box__list">
+          <!-- lib-divider ===> map-box__divider -->
+          <div class="map-box__divider"></div>
           <li><a href="#">검색결과 없음</a></li>
         </ul>
-        <!-- <li class="lib-list__col lib__name--big">도서관 정보 없음</li>
-        <div class="lib-divider"></div>
-        <li class="lib-list__col text--gray">
-          도서관 선택 및 검색을 부탁드려요!
-        </li>
-        <div class="lib-divider"></div>
-        <img
-          class="reading-girl__svg"
-          src="/src/svg/schoolbooks-monochrome.svg"
-          alt="family"
-        /> -->
       </aside>
       <div id="map"></div>
     </div>
   </body>
-  <script
-    src="https://kit.fontawesome.com/4320904247.js"
-    crossorigin="anonymous"
-  ></script>
 </html>

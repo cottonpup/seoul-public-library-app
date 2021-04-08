@@ -6,20 +6,18 @@ import Map from './Map.js';
 
 class Header {
   static container = document.querySelector('.header');
-  static nearbyBtn = document.querySelector('.btn__nearby');
+  static nearbyBtn = document.querySelector('.header__nearby-btn');
   static burger = document.querySelector('.fa-bars');
-  static searchText = document.querySelector(
-    'body > header > div > input[type=text]'
-  );
+  static searchText = document.querySelector('header > div > input[type=text]');
 
   // Called once on App.init()
   static init() {
     // Open sidebar when clicking burger
     Header.burger.addEventListener('click', () => {
-      if (!Sidebar.container.classList.contains('display')) {
-        console.log('엽니다');
+      if (!Sidebar.container.classList.contains('map-box__sidebar--display')) {
+        console.log('Sidebar가 열립니다 ^___^');
         Sidebar.openSidebar();
-      } else if (Sidebar.container.classList.contains('display')) {
+      } else if (Sidebar.container.classList.contains('map-box__sidebar--display')) {
         Sidebar.closeSidebar();
       }
     });
