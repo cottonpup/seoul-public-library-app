@@ -14,7 +14,7 @@ class App {
 
     Sidebar.init();
 
-    Header.nearbyBtn.addEventListener('click', async () => {
+    Header.nearbyBtn.addEventListener('click', function() {
       Header.nearbyBtn.innerHTML = '';
       Header.nearbyBtn.insertAdjacentHTML(
         'beforeend',
