@@ -15,7 +15,8 @@ class Map {
   static cachedLibraries = new globalThis.Map();
   // Called once on App.init()
   static initMarkerHandler(row) {
-    Map.container.style.zIndex = '399';
+    // IOS
+    Map.driver.style.zIndex = '399';
     Map.container.addEventListener('click', function (e) {
       const selectedLibraryData = Sidebar.selectedLibraryData(e, row);
       if (!selectedLibraryData) return;
