@@ -113,7 +113,6 @@ body {
 
 /* MAP */
 #map {
-  padding: 1rem 2rem;
   z-index: 2;
   flex: 1;
   background-color: rgb(165, 165, 165);
