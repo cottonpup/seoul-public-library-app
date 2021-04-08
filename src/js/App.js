@@ -14,14 +14,14 @@ class App {
 
     Sidebar.init();
 
-    Header.nearbyBtn.addEventListener('click', function() {
+    Header.nearbyBtn.addEventListener('click', function () {
       Header.nearbyBtn.innerHTML = '';
       Header.nearbyBtn.insertAdjacentHTML(
         'beforeend',
         '<div class="loader"></div>'
       );
 
-      await navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.getCurrentPosition(
         (position) => {
           Map.nearbyBtnClick(position);
           Header.nearbyBtn.innerHTML = '';
