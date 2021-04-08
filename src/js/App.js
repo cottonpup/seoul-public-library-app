@@ -14,16 +14,22 @@ class App {
 
     Sidebar.init();
 
-    Header.nearbyBtn.addEventListener('click', function () {
-
+    Header.nearbyBtn.addEventListener('click', async () => {
       Header.nearbyBtn.innerHTML = '';
       Header.nearbyBtn.insertAdjacentHTML(
         'beforeend',
         '<div class="loader"></div>'
       );
 
-      navigator.geolocation.getCurrentPosition(
-        (position) => Map.nearbyBtnClick(position),
+      await navigator.geolocation.getCurrentPosition(
+        (position) => {
+          Map.nearbyBtnClick(position);
+          Header.nearbyBtn.innerHTML = '';
+          Header.nearbyBtn.insertAdjacentHTML(
+            'beforeend',
+            '<i class="far fa-compass"></i>주변 도서관 찾기'
+          );
+        },
         (err) =>
           alert(
             `ERROR(${err.code}): ${err.message}: Could not get your position`
