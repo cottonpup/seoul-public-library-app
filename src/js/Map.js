@@ -1,10 +1,12 @@
 'use strict';
+import Header from './Header.js';
 import Sidebar from './Sidebar.js';
 
 class Map {
   static container = document.querySelector('#map'); // MAP CONTAINER BOX
   // Init default view for map
   static driver = L.map('map').setView([37.5642135, 127.0016985], 11); // Real MAP
+
   // Init cluster library
   static cluster = L.markerClusterGroup();
   // Obeserver
@@ -16,7 +18,6 @@ class Map {
   // Called once on App.init()
   static initMarkerHandler(row) {
     // IOS
-    Map.driver.style.zIndex = '399';
     Map.container.addEventListener('click', function (e) {
       const selectedLibraryData = Sidebar.selectedLibraryData(e, row);
       if (!selectedLibraryData) return;
@@ -29,6 +30,18 @@ class Map {
 
       Sidebar.openSidebar();
     });
+  }
+
+  static createCircle(coordinates) {
+    const circle = L.circle(coordinates, {
+      color: '#2f61b1',
+      fillColor: '#4285f4',
+      fillOpacity: 0.111,
+      radius: 800
+    })
+      .addTo(Map.driver)
+      .bindPopup('내 지점에서 <b>800미터</b> 이내의 반경입니다.')
+      .openPopup();
   }
 
   static renderMark(library) {
@@ -86,6 +99,7 @@ class Map {
           );
         }
 
+      Map.createCircle([latitude, longitude]);
       Map.mapSetView([latitude, longitude], 15);
       Header.nearbyBtn.innerHTML = '';
       Header.nearbyBtn.insertAdjacentHTML(
