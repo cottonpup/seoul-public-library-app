@@ -17,7 +17,9 @@ class Header {
       if (!Sidebar.container.classList.contains('map-box__sidebar--display')) {
         console.log('Sidebar가 열립니다 ^___^');
         Sidebar.openSidebar();
-      } else if (Sidebar.container.classList.contains('map-box__sidebar--display')) {
+      } else if (
+        Sidebar.container.classList.contains('map-box__sidebar--display')
+      ) {
         Sidebar.closeSidebar();
       }
     });

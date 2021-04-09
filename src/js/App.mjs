@@ -5,8 +5,10 @@ import Sidebar from './Sidebar.js';
 import Map from './Map.js';
 
 class App {
+  constructor() {}
+
   // Map init. Sidebar init. nearbyBtn init. Fetch map data.
-  static async init() {
+  async init() {
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -54,4 +56,6 @@ class App {
   }
 }
 
-App.init();
+const app = new App();
+
+app.init();

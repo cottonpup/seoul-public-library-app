@@ -4,8 +4,7 @@
   "description": "서울특별시 각 자치구의 공공도서관의 현황정보를 볼 수 있는 웹 어플리케이션입니다.",
   "main": "index.html",
   "scripts": {
-    "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src/js -w -d dist/js"
   },
   "repository": {
     "type": "module",
@@ -18,6 +17,10 @@
   },
   "homepage": "https://github.com/cottonpup/seoul-public-library-app#readme",
   "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.15",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.15",
     "parcel": "^1.12.4"
   },
   "dependencies": {
