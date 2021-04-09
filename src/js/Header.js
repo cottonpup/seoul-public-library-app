@@ -1,7 +1,7 @@
 'use strict';
 
 import Sidebar from './Sidebar.js';
-import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.esm.js';
+import Fuse from 'fuse.js';
 import Map from './Map.js';
 
 class Header {
