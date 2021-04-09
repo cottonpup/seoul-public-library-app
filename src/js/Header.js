@@ -1,7 +1,7 @@
 'use strict';
 
 import Sidebar from './Sidebar.js';
-import Fuse from 'fuse.js';
+// import Fuse from 'fuse.js';
 import Map from './Map.js';
 
 class Header {
