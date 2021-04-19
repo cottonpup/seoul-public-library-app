@@ -40,7 +40,7 @@ class Map {
       radius: 800
     })
       .addTo(Map.driver)
-      .bindPopup('내 지점에서 <b>800미터</b> 이내의 반경입니다.')
+      .bindPopup('현재 지점에서 <b>800미터</b> 이내의 반경입니다.')
       .openPopup();
   }
 
