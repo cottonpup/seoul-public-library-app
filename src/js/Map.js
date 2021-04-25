@@ -5,7 +5,7 @@ import Sidebar from './Sidebar.js';
 class Map {
   static container = document.querySelector('#map'); // MAP CONTAINER BOX
   // Init default view for map
-  static driver = L.map('map').setView([37.5642135, 127.0016985], 11); // Real MAP
+  static driver = L.map('map', {tap: false}).setView([37.5642135, 127.0016985], 11); // Real MAP
 
   // Init cluster library
   static cluster = L.markerClusterGroup();
@@ -40,7 +40,7 @@ class Map {
       radius: 800
     })
       .addTo(Map.driver)
-      .bindPopup('현재 지점에서 <b>800미터</b> 이내의 반경입니다.')
+      .bindPopup('내 지점에서 <b>800미터</b> 이내의 반경입니다.')
       .openPopup();
   }
 

@@ -1,10 +1,13 @@
 const path = require('path');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/js/App.mjs',
+  entry: './src/js/App.js',
   output: {
-    path: path.resolve(__dirname, 'dist/js'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'public'),
+    filename: 'js/bundle.js'
   },
   module: {
     rules: [
@@ -15,13 +18,30 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: [["@babel/preset-env", {
+              "useBuiltIns": "usage",
+              corejs: 3
+            }]],
             plugins: ['@babel/plugin-proposal-class-properties']
           }
         }
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       }
     ]
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/styles.css'
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'src/index.html'
+    })
+  ],
   devtool: 'source-map',
   mode: 'development'
 };

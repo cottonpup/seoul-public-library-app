@@ -3,6 +3,7 @@
 import Header from './Header.js';
 import Sidebar from './Sidebar.js';
 import Map from './Map.js';
+import '../css/style.css';
 
 class App {
   constructor() {}
