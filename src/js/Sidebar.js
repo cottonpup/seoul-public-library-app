@@ -119,7 +119,9 @@ class Sidebar {
 
   static selectResultElement() {
     this.container.addEventListener('click', async (e) => {
-      const searchLibraryName = e.target.closest('ul > li > a').innerText;
+      let searchLibraryName = null;
+      searchLibraryName =
+        '결과없음' ?? e.target.closest('ul > li > a').innerText;
       console.log(searchLibraryName);
       if (searchLibraryName !== '결과없음') {
         // 1. Get cached Library marker & coords

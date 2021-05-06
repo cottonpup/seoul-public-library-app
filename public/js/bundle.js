@@ -675,12 +675,15 @@ var Sidebar = /*#__PURE__*/function () {
     value: function selectResultElement() {
       this.container.addEventListener('click', /*#__PURE__*/function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+          var _결과없음;
+
           var searchLibraryName, cached;
           return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
-                  searchLibraryName = e.target.closest('ul > li > a').innerText;
+                  searchLibraryName = null;
+                  searchLibraryName = (_결과없음 = '결과없음') !== null && _결과없음 !== void 0 ? _결과없음 : e.target.closest('ul > li > a').innerText;
                   console.log(searchLibraryName);
 
                   if (searchLibraryName !== '결과없음') {
@@ -692,7 +695,7 @@ var Sidebar = /*#__PURE__*/function () {
                     cached.marker.openPopup();
                   }
 
-                case 3:
+                case 4:
                 case "end":
                   return _context.stop();
               }
@@ -5491,7 +5494,7 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
     if(true) {
-      // 1619278290498
+      // 1620292601504
       var cssReload = __webpack_require__(/*! ./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {"locals":false});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6352,7 +6355,7 @@ try {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("80c899c42fbfbc49681c")
+/******/ 		__webpack_require__.h = () => ("37aca8893432909697d3")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
